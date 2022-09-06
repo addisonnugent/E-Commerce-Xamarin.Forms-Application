@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:MobileEcommerce.Extensions;assembly=MobileEcommerce"
+             x:Class="MobileEcommerce.HomePage"
+             Title="Shop">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit Inventory" Clicked="Inventory_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+          
+            <Style x:Key="sections" TargetType="Frame">
+                <Setter Property="BorderColor" Value="{StaticResource Key=dC}"></Setter>
+              
+                <Setter Property="Padding" Value="10"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+  
+    <ContentPage.Content>
+
+
+        <ScrollView Orientation="Vertical" Margin="7">
+            <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto">
+                <StackLayout>
+                    <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource Key=sections}">
+                        <StackLayout>
+                            <Label Text="Ecommerce App" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center"></Label>
+
+                            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto">
+
+                                <CollectionView Grid.Row="0" Grid.Column="1" 
+                            x:Name="ProductList"
+                            SelectionChanged="ProductList_SelectionChanged"
+                            SelectionMode="Single">
+                                    <CollectionView.EmptyView>
+                                        <Grid>
+
+                                            <Frame
+                            Margin="6"
+                            BorderColor="Blue">
+                                                <Label
+                                FontSize="Medium"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Inventory Empty."
+                                VerticalOptions="CenterAndExpand" />
+                                            </Frame>
+                                        </Grid>
+                                    </CollectionView.EmptyView>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Frame HasShadow="True" Style="{StaticResource sections}" >
+                                                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="50, 245, 50" >
+
+                                                        <Label Grid.Row="1" Grid.Column="0" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Id, StringFormat='ID: {0}'}"
+                                            ></Label>
+
+                                                        <Label Grid.Row="1" Grid.Column="1" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Name}" ></Label>
+
+                                                        <Label Grid.Row="2" Grid.Column="1" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Price, StringFormat='${0:0.00}'}"
+                                           ></Label>
+
+                                                        <Label Grid.Row="2" Grid.ColumnSpan="3" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Description}"
+                                           ></Label>
+
+                                                        <Label Grid.Row="3" Grid.ColumnSpan="3" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Quantity, StringFormat='Units Avalible: {0:0.}'}"
+                                           ></Label>
+
+                                                        <Button Grid.Row="4" Grid.ColumnSpan="3" 
+                                           FontAttributes="Bold" 
+                                           Text="Add Unit To Cart"
+                                                   x:Name="AddToCart"
+                                           ></Button>
+
+                                                    </Grid>
+                                                </Frame>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Frame Grid.Row="2" Grid.Column="1" Style="{StaticResource Key=sections}" Padding="10" VerticalOptions="StartAndExpand">
+                        <StackLayout>
+                            <Label FontSize="Medium" Text="Cart Options" x:Name="CartOption"></Label>
+                            <Button FontSize="Small" Text="Save Cart" BackgroundColor="Coral" Clicked="SaveCart_Clicked" x:Name="SaveCart"></Button>
+
+                            <Button FontSize="Small" Text="Load Cart" BackgroundColor="Coral" Clicked="LoadCart_Clicked" x:Name="LoadCart"></Button>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Frame Grid.Row="3" Grid.Column="1" Style="{StaticResource Key=sections}">
+                        <StackLayout>
+                            <CollectionView Grid.Row="3" Grid.Column="1" 
+                            x:Name="CartList"
+                            SelectionChanged="CartList_SelectionChanged"
+                            SelectionMode="Single">
+                                <CollectionView.EmptyView>
+                                    <Grid>
+
+                                        <Frame
+                           
+                            BorderColor="Blue">
+                                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="CenterAndExpand"
+                                                   
+                                Text="Cart Empty."
+                                VerticalOptions="CenterAndExpand" />
+                                        </Frame>
+                                    </Grid>
+                                </CollectionView.EmptyView>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
+                                                <StackLayout Orientation="Horizontal"  HorizontalOptions="StartAndExpand">
+                                                    <Label Text="{Binding product.Name}" Margin="2,0,0,0" VerticalOptions="Center" FontSize="Medium"  TextColor="Black"/>
+                                                </StackLayout>
+                                                
+                                            </StackLayout>
+
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Grid.Row="4" Grid.Column="1" Style="{StaticResource Key=sections}" Padding="10" VerticalOptions="StartAndExpand">
+                        <StackLayout Orientation="Vertical" >
+                            <Label Text="Checkout:" FontSize="Medium" x:Name="Checkout"></Label>
+                            <ScrollView Orientation="Horizontal">
+                                <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto" x:Name="Checkout" IsVisible="True">
+                                    <Frame Grid.Row="1" Style="{StaticResource Key=sections}">
+                                        <StackLayout>
+                                            <Label Text="Items In cart" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>
+                                            <Label Text="Product Name" x:Name="pn"></Label>
+                                            <Label Text="Units: (2) Apple" x:Name="pq"></Label>
+                                            <Label Text="Price:$5 " x:Name="pp"></Label>
+                                        </StackLayout>
+                                    </Frame>
+                                  
+                                    <Frame Grid.Row="2" Style="{StaticResource Key=sections}">
+                                        <StackLayout>
+                                            <Label Text="Total Price" x:Name="totalp" FontAttributes="Bold"></Label>
+                                            <Label Text="Tax: " x:Name="subt"></Label>
+                                            <Label Text="Grandtotal: " x:Name="grandt"></Label>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame Grid.Row="3" Style="{StaticResource Key=sections}">
+                                        <StackLayout>
+                                            <Label Text="Enter Payment Info" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>
+                                            <Entry Text="Credit Card Number " x:Name="cc"></Entry>
+                                            <Entry Text="CVV" x:Name="ccv"></Entry>
+                                            <Entry Text="Zipcode " x:Name="zip"></Entry>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame Grid.Row="4" Style="{StaticResource Key=sections}">
+                                        <StackLayout>
+                                            <Label Text="Enter Shipping Info" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>
+                                             <Entry Text="Address" x:Name="address"></Entry>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame Grid.Row="5" Style="{StaticResource Key=sections}">
+                                        <StackLayout>
+                                            <Button Text="Checkout" x:Name="checkout"></Button>
+                                         </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ScrollView>
+                        </StackLayout>
+
+                    </Frame>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
