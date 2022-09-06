@@ -7,17 +7,18 @@ using System.IO;
 
 namespace Library.MobileEcommerce.Services
 {
+	
 	public interface ICartServices
-  {
-        public List<CartService> SavedCartsList { get; }
+	{
+        	public List<CartService> SavedCartsList { get; }
 
-        ObservableCollection<Item> GetCartProds();
-        void SaveCart(ObservableCollection<Item> carts);
+        	ObservableCollection<Item> GetCartProds();
+        	void SaveCart(ObservableCollection<Item> carts);
 
-        void AddToCart(Product myprod);
+        	void AddToCart(Product myprod);
 
-        void RemoveFromCart(int id);
+        	void RemoveFromCart(int id);
 
-        void Clear();
-   }
+        	void Clear();
+   	}
 }
