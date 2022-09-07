@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileEcommerce.Pages.ProductCreatePage"
+             Title="Create Product Page">
+  
+  
+    <ContentPage.Resources>
+        <ResourceDictionary>
+              <Style x:Key="frame" TargetType="Label">
+                
+                <Setter Property="Padding" Value="20,15,15,0"></Setter>
+            </Style>
+            <Style x:Key="t" TargetType="Entry">
+                <Setter Property="WidthRequest" Value="300"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            </Style>
+          
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+             
+            <Label Text="Product Id" Style="{StaticResource frame}"></Label>
+            <Entry x:Name="pi" Keyboard="Numeric" MaxLength="4" 
+                   Placeholder="Enter Number">           
+            </Entry>
+     
+            <Label Text="Product Name"  Style="{StaticResource frame}"></Label>
+            <Entry x:Name="pn" Keyboard="Text" Placeholder="Enter Product Name"></Entry>
+
+            <Label Text="Description"  Style="{StaticResource frame}"></Label>
+            <Entry x:Name="pd" Keyboard="Text" Margin="0" Placeholder="Enter Product Description" ></Entry>
+
+            <Label BindingContext="" 
+                   Text="{Binding Source={x:Reference PriceSlider}, 
+                Path=Value, StringFormat='Product Price is ${0.0:00}'}"
+                   HorizontalOptions="CenterAndExpand"
+                   Style="{StaticResource frame}">
+            </Label>
+            <Slider x:Name="PriceSlider" Minimum="0.0" Maximum="500" ThumbColor="Black" MinimumTrackColor="Black" MaximumTrackColor="Black"></Slider>
+         
+
+              <Label BindingContext="" 
+                   Text="{Binding Source={x:Reference QuantitySlider}, 
+                Path=Value, StringFormat='Product Quantity is {0:0.00}'}"
+                   HorizontalOptions="CenterAndExpand"
+                   Style="{StaticResource frame}">
+            </Label>
+            <Slider x:Name="QuantitySlider" Minimum="0.0" Maximum="300" ThumbColor="black" MinimumTrackColor="Black" MaximumTrackColor="Black"></Slider>
+       
+            <Button Clicked="NewProduct_Clicked" Text="Create Product" TextColor="White" BackgroundColor="Blue" Padding="15">
+          
+            </Button>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
