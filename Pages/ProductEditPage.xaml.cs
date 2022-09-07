@@ -9,7 +9,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MobileEcommerce
+namespace MobileEcommerce.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductEditPage : ContentPage
