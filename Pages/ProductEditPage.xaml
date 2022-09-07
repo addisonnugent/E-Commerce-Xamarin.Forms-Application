@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileEcommerce.ProductEditPage"
+             Title="Edit Product">
+    <ContentPage.Content>
+        <StackLayout Margin="0,0,0,0">
+                <StackLayout VerticalOptions="FillAndExpand" Margin="6,0">
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto">
+
+
+                    <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" BorderColor="Transparent" Padding="0">
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,Auto">
+                            <Label Text="Product ID:" Grid.Row="1" Grid.Column="1" FontSize="Medium"></Label>
+                            <Label x:Name="pi" Grid.Row="1" Grid.Column="2" FontSize="Medium"></Label>
+                        </Grid>
+                    </Frame>
+                     
+
+                    <Frame Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderColor="Transparent" Padding="0">
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto,Auto">
+                            <Label Text="Product Name:" Grid.Row="1" Grid.Column="1" FontSize="Medium" VerticalTextAlignment="Center" ></Label>
+                            <Entry x:Name="pn" Keyboard="Text" Placeholder="Product Name" Grid.Row="1" Grid.Column="2"></Entry>
+                        </Grid>
+                    </Frame>
+
+
+                    <Frame Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Padding="0" BorderColor="Transparent">
+                        <Grid RowDefinitions="Auto, Auto, Auto">
+                            <Label Text="Description:" Grid.Row="1" FontSize="Medium"></Label>
+                            <Entry x:Name="pd" Keyboard="Text" Margin="0" Placeholder="Product Description"  Grid.Row="2" HeightRequest="30" VerticalTextAlignment="Start"></Entry>
+                            
+                      </Grid>
+                    </Frame>
+
+
+                    <Frame Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Padding="0" >
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto" Padding="0">
+                            <Label Text="Price:  $" Grid.Row="1" Grid.Column="1" FontSize="Medium" VerticalTextAlignment="Center"></Label>
+                            <Entry x:Name="pp" Keyboard="Numeric" Margin="0" Placeholder="$0" Grid.Row="1" Grid.Column="2"></Entry>
+                      </Grid>
+                    </Frame>
+                    </Grid>
+                </StackLayout>
+          
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,4" Spacing="15">
+                <Button x:Name="back" Text="Back" Clicked="Back_Clicked" BackgroundColor="Blue" ></Button>
+              
+                <Button x:Name="update" Text="Update" Clicked="Update_Clicked" BackgroundColor="Blue" ></Button>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
