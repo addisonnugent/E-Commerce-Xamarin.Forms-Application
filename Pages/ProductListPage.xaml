@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileEcommerce.ProductListPage"
+             Title="Inventory">
+    <ContentPage.Resources>
+
+        <Style x:Key="sections" TargetType="Frame">
+           <Setter Property="Padding" Value="10"></Setter>
+          
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+     
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto">
+            <CollectionView Grid.Row="0" Grid.Column="1" 
+                            x:Name="ProductListView"
+                            HeightRequest="450"
+                            SelectionChanged="ProductList_SelectionChanged"
+                            SelectionMode="Single">
+                <CollectionView.EmptyView>
+                  
+                    <Grid>
+                        <Frame
+                            BorderColor="Black">
+                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Inventory Empty."
+                                VerticalOptions="CenterAndExpand" />
+                        </Frame>
+                    </Grid>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame Style="{StaticResource sections}" >
+                                <Grid RowDefinitions="Auto,Auto"  >
+                                    <Label Grid.Row="1" Grid.Column="0" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Id, StringFormat='Id: {0}'}"
+                                          ></Label>
+
+                                    <Label Grid.Row="1"
+                                           Grid.Column="1" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Name}"
+                                           LineBreakMode="TailTruncation" ></Label>
+
+                                    <Label Grid.Row="2"
+                                           Grid.Column="1" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Price, StringFormat='    Price per: $ {0:0.00}'}"
+                                           LineBreakMode="TailTruncation"
+                                           ></Label>
+
+                                    <Label Grid.Row="2" Grid.ColumnSpan="3" 
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Description}"
+                                           ></Label>
+
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button x:Name="AddButton" Text="Create New Product" Clicked="Add_Clicked" Grid.Row="1" Grid.Column="1" BackgroundColor="blue" TextColor="White">
+            </Button>  
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
