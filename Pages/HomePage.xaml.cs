@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading;
 
-namespace MobileEcommerce
+namespace MobileEcommerce.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
