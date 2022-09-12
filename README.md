@@ -3,4 +3,4 @@ Converted my Advanced Console Application into a  mobile application using Xamar
 
 - If checkout is completed, then the corresponding saved cart will be deleted 
 
-Primary focus is on implementation, NOT design
+Primary focus is on implementation, not design
